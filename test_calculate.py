@@ -91,6 +91,20 @@ class Test(TestCase):
         def my_office_generator_factory(n):
             return (1 for i in range(0,n))
 
-        got = calculate.get_formatted_output(my_office_generator_factory=my_office_generator_factory, my_percentage_of_offices_with_a_path=lambda x: f"!{x}!")
+        got = calculate.get_formatted_output(my_office_generator_factory=my_office_generator_factory, my_percentage_of_offices_with_a_path=lambda x: x/1000)
 
-        self.assertEqual('', got)
+        want = """Number of samples for each p: 10000
+1.00: 0.00100
+0.90: 0.00090
+0.80: 0.00080
+0.70: 0.00070
+0.60: 0.00060
+0.50: 0.00050
+0.40: 0.00040
+0.30: 0.00030
+0.20: 0.00020
+0.10: 0.00010
+0.00: 0.00000
+"""
+
+        self.assertEqual(want, got)

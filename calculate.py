@@ -53,6 +53,6 @@ def get_formatted_output(my_office_generator_factory, my_percentage_of_offices_w
 
 
     empty_ps =  np.linspace(1, 0, 11)
-    lines = [f'{empty_p}: {my_percentage_of_offices_with_a_path(empty_p)}' for empty_p in empty_ps]
+    lines = [f'{empty_p:.2f}: {my_percentage_of_offices_with_a_path(empty_p):.5f}' for empty_p in empty_ps]
 
-    return f"Number of samples for each p: {SAMPLES}" + ("\n".join(lines))
+    return f"Number of samples for each p: {SAMPLES}\n" + ("\n".join(lines)) + "\n"
