@@ -64,10 +64,16 @@ class Test(TestCase):
 
 
     def test_office_generator__makes_n_items(self):
-        offices = calculate.office_generator(13, lambda: 1);
+        offices = calculate.office_generator(13);
 
         self.assertEqual(13, len(offices))
 
+    def test_office_generator__makes_offices(self):
+        office_generator = calculate.office_generator(5)
+
+        office = next(office_generator)
+
+        self.assertEqual('Office', type(office).name)
 
 
 
