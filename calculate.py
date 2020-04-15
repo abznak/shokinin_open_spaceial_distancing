@@ -8,7 +8,14 @@ DESK_EMPTY = 0
 DESK_FULL = 1
 DESK_PATH = 2
 
+OFFICE_SIDE_LENGTH = 10
+
 Office = namedtuple('Office', 'start_col desks')
+
+# p is probably a desk is occupied
+def build_random_office(p):
+    assert False
+
 
 
 def office_has_path(office):

@@ -36,4 +36,7 @@ class Test(TestCase):
 
         self.assertEqual(False, got)
 
+    def test_buid_random_office__has_correct_size(self):
+        got = calculate.build_random_office(1)
+        self.assertEqual((10,10), got.desks.shape);
 
