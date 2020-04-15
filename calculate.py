@@ -22,7 +22,7 @@ def build_random_office(p):
     return Office(start_col, desks)
 
 def office_generator(n, build_random_office_fn):
-    assert False
+    return range(n)
 
 def office_has_path(office):
     desks = np.copy(office.desks)
