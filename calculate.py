@@ -2,7 +2,7 @@ import numpy as np
 from collections import namedtuple
 from skimage.morphology import flood_fill
 
-SAMPLES = 10000
+SAMPLES = 10
 
 DESKROW_EXIT = 0
 
@@ -54,7 +54,7 @@ def get_results(my_percentage_of_offices_with_a_path = percentage_of_offices_wit
 
     def calculate_percentage(empty_p):
         generator = office_generator(SAMPLES, empty_p)
-        return my_percentage_of_offices_with_a_path(generator, my_percentage_of_offices_with_a_path)
+        return my_percentage_of_offices_with_a_path(generator)
 
     results = ((empty_p, calculate_percentage(empty_p)) for empty_p in empty_ps)
     return results

@@ -88,9 +88,9 @@ class Test(TestCase):
         mock_build_random_office_fn.assert_called_once_with(.34)
 
     def test_get_formatted_output(self):
-        got = calculate.get_formatted_output(my_percentage_of_offices_with_a_path=lambda gen, fn: 0.0001)
+        got = calculate.get_formatted_output(my_percentage_of_offices_with_a_path=lambda gen: 0.0001)
 
-        want = """Number of samples for each p: 10000
+        want = f"""Number of samples for each p: {calculate.SAMPLES}
 1.00: 0.00010
 0.90: 0.00010
 0.80: 0.00010
