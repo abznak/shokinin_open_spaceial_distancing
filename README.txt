@@ -1,12 +1,50 @@
+=========================
 Open Space-ial Distancing
+=========================
 
-This is Tim Smith's solution to the "Open Space-ial Distancing" Shokinin puzzle.  The details of the puzzle are below.
+This is Tim Smith's solution to the "Open Space-ial Distancing" Shokunin puzzle.  The details of the puzzle are below.
+
+In a hurry?  Try it on Google Colab: https://colab.research.google.com/drive/1d40bwpJR86MONpXiYjhlTV01HDXU7iDl
+
+The implementation of the path check is in the office_has_path function.  It pushes the heavy lifting onto flood_fill
+from skimage.morphology.
+
+Note that I'm using 100000 samples instead of 10000.  The results are a bit more stable at 100000.
+
+Sample output from two runs:
+
+Number of samples for each p: 100000
+1.0: 0.000
+0.9: 0.000
+0.8: 0.003
+0.7: 0.063
+0.6: 0.315
+0.5: 0.694
+0.4: 0.916
+0.3: 0.981
+0.2: 0.996
+0.1: 1.000
+0.0: 1.000
+
+Number of samples for each p: 100000
+1.0: 0.000
+0.9: 0.000
+0.8: 0.003
+0.7: 0.061
+0.6: 0.319
+0.5: 0.694
+0.4: 0.915
+0.3: 0.981
+0.2: 0.997
+0.1: 1.000
+0.0: 1.000
 
 
+==================
+Problem Definition
+from Andy's email
+==================
 
-
-
-======  From Andy's email:
 Open Space-ial Distancing
 
 Background
