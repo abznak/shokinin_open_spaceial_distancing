@@ -1,10 +1,26 @@
 import numpy as np
 from collections import namedtuple
+from skimage.morphology import flood_fill
+
+DESKROW_EXIT = 0
+
+DESK_EMPTY = 0
+DESK_FULL = 1
+DESK_PATH = 2
 
 Office = namedtuple('Office', 'start_col desks')
 
 def office_has_path(office):
-    return False
+    desks = np.copy(office.desks)
+    start_col = office.start_col
+    start_row = desks.shape[0] - 1
+
+    desks[start_row, start_col] = DESK_EMPTY
+    desks_with_path = flood_fill(desks, (start_row, start_col), DESK_PATH)
+    path_found = any(DESK_PATH == desk for desk in desks_with_path[DESKROW_EXIT])
+    return path_found
+
+
 
 # Return the proportion of offices that had a path
 #

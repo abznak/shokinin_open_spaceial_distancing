@@ -21,19 +21,19 @@ class Test(TestCase):
         self.assertEqual(0, got)
 
     def test_office_has_path__should_find_a_path_in_an_empty_office(self):
-        empty_desks = np.zeros([2, 2])
+        empty_desks = np.full([2, 2], calculate.DESK_EMPTY)
         office = calculate.Office(0, empty_desks)
 
         got = calculate.office_has_path(office)
 
-        self.assertEqual(False, got)
+        self.assertEqual(True, got)
 
     def test_office_has_path__should_not_find_a_path_in_a_full_office(self):
-        full_desks = np.ones([2, 2])
+        full_desks = np.full([2, 2], calculate.DESK_FULL)
         office = calculate.Office(0, full_desks)
 
         got = calculate.office_has_path(office)
 
-        self.assertEqual(True, got)
+        self.assertEqual(False, got)
 
 
