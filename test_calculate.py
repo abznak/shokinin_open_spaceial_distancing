@@ -48,13 +48,19 @@ class Test(TestCase):
         got = calculate.build_random_office(1)
         self.assertEqual(100, got.desks.sum())
 
-    def test_build_random_office__has_some_offices_start_at_0(self):
+    def test_build_random_office__has_some_offices_start_col_at_0(self):
         np.random.seed(1)
 
         starts = [calculate.build_random_office(0).start_col for i in range(1000)]
 
         self.assertEqual(0, min(starts))
 
+    def test_build_random_office__has_some_offices_start_col_at_9(self):
+        np.random.seed(1)
+
+        starts = [calculate.build_random_office(0).start_col for i in range(1000)]
+
+        self.assertEqual(9, max(starts))
 
 
 
