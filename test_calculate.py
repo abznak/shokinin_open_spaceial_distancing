@@ -63,5 +63,11 @@ class Test(TestCase):
         self.assertEqual(9, max(starts))
 
 
+    def test_office_generator__makes_n(self):
+        offices = calculate.office_generator(13, lambda: 1);
+
+        self.assertEqual(13, len(offices))
+
+
 
 
