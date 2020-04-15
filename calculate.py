@@ -46,12 +46,17 @@ def office_has_path(office):
 # Return the proportion of offices that had a path
 #
 # Why is it called percentage when it's a fraction?  Because that's the language the problem used.
-def percentage_of_offices_with_a_path(office_generator, office_has_path_fn = office_has_path):
-    return np.mean([1 if office_has_path_fn(office) else 0 for office in office_generator])
+def percentage_of_offices_with_a_path(my_office_generator, office_has_path_fn = office_has_path):
+    return np.mean([1 if office_has_path_fn(office) else 0 for office in my_office_generator])
 
 def get_results(my_percentage_of_offices_with_a_path = percentage_of_offices_with_a_path):
     empty_ps =  np.linspace(1, 0, 11)
-    results = ((empty_p, my_percentage_of_offices_with_a_path(office_generator(SAMPLES, empty_p), my_percentage_of_offices_with_a_path)) for empty_p in empty_ps)
+
+    def calculate_percentage(empty_p):
+        generator = office_generator(SAMPLES, empty_p)
+        return my_percentage_of_offices_with_a_path(generator, my_percentage_of_offices_with_a_path)
+
+    results = ((empty_p, calculate_percentage(empty_p)) for empty_p in empty_ps)
     return results
 
 def format_output(results):
