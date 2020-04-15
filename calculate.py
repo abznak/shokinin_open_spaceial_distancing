@@ -9,12 +9,14 @@ DESK_FULL = 1
 DESK_PATH = 2
 
 OFFICE_SIDE_LENGTH = 10
+OFFICE_DIMENSIONS = [OFFICE_SIDE_LENGTH, OFFICE_SIDE_LENGTH]
 
 Office = namedtuple('Office', 'start_col desks')
 
 # p is probably a desk is occupied
 def build_random_office(p):
-    return Office(1, np.ones([OFFICE_SIDE_LENGTH, OFFICE_SIDE_LENGTH]))
+    desks = np.zeros(OFFICE_DIMENSIONS)
+    return Office(1, desks)
 
 
 

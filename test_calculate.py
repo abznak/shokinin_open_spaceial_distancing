@@ -44,3 +44,7 @@ class Test(TestCase):
         got = calculate.build_random_office(0)
         self.assertEqual(0, got.desks.sum())
 
+
+
+
+
