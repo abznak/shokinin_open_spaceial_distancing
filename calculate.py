@@ -2,6 +2,8 @@ import numpy as np
 from collections import namedtuple
 from skimage.morphology import flood_fill
 
+SAMPLES = 10000
+
 DESKROW_EXIT = 0
 
 DESK_EMPTY = 0
@@ -46,3 +48,11 @@ def office_has_path(office):
 # Why is it called percentage when it's a fraction?  Because that's the language the problem used.
 def percentage_of_offices_with_a_path(office_generator, office_has_path_fn):
     return np.mean([1 if office_has_path_fn(office) else 0 for office in office_generator])
+
+def get_formatted_output(my_office_generator_factory, my_percentage_of_offices_with_a_path):
+
+
+    empty_ps =  np.linspace(1, 0, 11)
+    lines = [f'{empty_p}: {my_percentage_of_offices_with_a_path(empty_p)}' for empty_p in empty_ps]
+
+    return f"Number of samples for each p: {SAMPLES}" + ("\n".join(lines))

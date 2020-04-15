@@ -87,4 +87,10 @@ class Test(TestCase):
 
         mock_build_random_office_fn.assert_called_once_with(.34)
 
+    def test_get_formatted_output(self):
+        def my_office_generator_factory(n):
+            return (1 for i in range(0,n))
 
+        got = calculate.get_formatted_output(my_office_generator_factory=my_office_generator_factory, my_percentage_of_offices_with_a_path=lambda x: f"!{x}!")
+
+        self.assertEqual('', got)
