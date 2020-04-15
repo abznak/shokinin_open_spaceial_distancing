@@ -88,23 +88,25 @@ class Test(TestCase):
         mock_build_random_office_fn.assert_called_once_with(.34)
 
     def test_get_formatted_output(self):
-        def my_office_generator_factory(n):
-            return (1 for i in range(0,n))
-
-        got = calculate.get_formatted_output(my_office_generator_factory=my_office_generator_factory, my_percentage_of_offices_with_a_path=lambda x: x/1000)
+        got = calculate.get_formatted_output(my_percentage_of_offices_with_a_path=lambda gen, fn: 0.0001)
 
         want = """Number of samples for each p: 10000
-1.00: 0.00100
-0.90: 0.00090
-0.80: 0.00080
-0.70: 0.00070
-0.60: 0.00060
-0.50: 0.00050
-0.40: 0.00040
-0.30: 0.00030
-0.20: 0.00020
+1.00: 0.00010
+0.90: 0.00010
+0.80: 0.00010
+0.70: 0.00010
+0.60: 0.00010
+0.50: 0.00010
+0.40: 0.00010
+0.30: 0.00010
+0.20: 0.00010
 0.10: 0.00010
-0.00: 0.00000
+0.00: 0.00010
 """
 
         self.assertEqual(want, got)
+
+    def test_get_results__first_row_is_correct(self):
+        results = list(calculate.get_results())
+
+        self.assertEqual((1,0), results[0])
