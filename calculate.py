@@ -10,16 +10,22 @@ DESK_PATH = 2
 
 Office = namedtuple('Office', 'start_col desks')
 
+
 def office_has_path(office):
     desks = np.copy(office.desks)
     start_col = office.start_col
     start_row = desks.shape[0] - 1
 
+    # When you stand up, your desk becomes empty
     desks[start_row, start_col] = DESK_EMPTY
-    desks_with_path = flood_fill(desks, (start_row, start_col), DESK_PATH)
-    path_found = any(DESK_PATH == desk for desk in desks_with_path[DESKROW_EXIT])
-    return path_found
 
+    # draw a path everywhere you can reach
+    desks_with_path = flood_fill(desks, (start_row, start_col), DESK_PATH)
+
+    # look for a path to any desk in the exit row
+    path_found = any(DESK_PATH == desk for desk in desks_with_path[DESKROW_EXIT])
+
+    return path_found
 
 
 # Return the proportion of offices that had a path
