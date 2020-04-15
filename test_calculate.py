@@ -87,30 +87,32 @@ class Test(TestCase):
         mock_build_random_office_fn.assert_called_once_with(.34)
 
     def test_get_formatted_output(self):
-        got = calculate.get_formatted_output(my_percentage_of_offices_with_a_path=lambda gen: 0.0001)
+        got = calculate.get_formatted_output(123, my_percentage_of_offices_with_a_path=lambda gen: 0.01)
 
-        want = f"""Number of samples for each p: {calculate.SAMPLES}
-1.00: 0.00010
-0.90: 0.00010
-0.80: 0.00010
-0.70: 0.00010
-0.60: 0.00010
-0.50: 0.00010
-0.40: 0.00010
-0.30: 0.00010
-0.20: 0.00010
-0.10: 0.00010
-0.00: 0.00010
+        want = f"""Number of samples for each p: 123
+1.0: 0.010
+0.9: 0.010
+0.8: 0.010
+0.7: 0.010
+0.6: 0.010
+0.5: 0.010
+0.4: 0.010
+0.3: 0.010
+0.2: 0.010
+0.1: 0.010
+0.0: 0.010
 """
 
         self.assertEqual(want, got)
 
     def test_get_results__first_row_is_correct(self):
-        results = list(calculate.get_results())
+        a_small_number_of_samples = 33
+        results = list(calculate.get_results(a_small_number_of_samples))
 
         self.assertEqual((1, 0), results[0])
 
     def test_get_results__last_row_is_correct(self):
-        results = list(calculate.get_results())
+        a_small_number_of_samples = 33
+        results = list(calculate.get_results(a_small_number_of_samples))
 
         self.assertEqual((0, 1), results[10])

@@ -2,7 +2,7 @@ import numpy as np
 from collections import namedtuple
 from skimage.morphology import flood_fill
 
-SAMPLES = 10000
+SAMPLES = 100000
 
 DESKROW_EXIT = 0
 
@@ -53,30 +53,30 @@ def percentage_of_offices_with_a_path(my_office_generator, office_has_path_fn=of
     return np.mean([1 if office_has_path_fn(office) else 0 for office in my_office_generator])
 
 
-def get_results(my_percentage_of_offices_with_a_path=percentage_of_offices_with_a_path):
+def get_results(n, my_percentage_of_offices_with_a_path=percentage_of_offices_with_a_path):
     empty_ps = np.linspace(1, 0, 11)
 
     def calculate_percentage(empty_p):
-        generator = office_generator(SAMPLES, empty_p)
+        generator = office_generator(n, empty_p)
         return my_percentage_of_offices_with_a_path(generator)
 
     results = ((empty_p, calculate_percentage(empty_p)) for empty_p in empty_ps)
     return results
 
 
-def format_output(results):
+def format_output(n, results):
     lines = [f'{res[0]:.1f}: {res[1]:.3f}' for res in results]
 
-    return f"Number of samples for each p: {SAMPLES}\n" + ("\n".join(lines)) + "\n"
+    return f"Number of samples for each p: {n}\n" + ("\n".join(lines)) + "\n"
 
 
-def get_formatted_output(my_percentage_of_offices_with_a_path=percentage_of_offices_with_a_path):
-    results = get_results(my_percentage_of_offices_with_a_path)
-    return format_output(results)
+def get_formatted_output(n, my_percentage_of_offices_with_a_path=percentage_of_offices_with_a_path):
+    results = get_results(n, my_percentage_of_offices_with_a_path)
+    return format_output(n, results)
 
 
 def main():
-    print(get_formatted_output())
+    print(get_formatted_output(SAMPLES))
 
 
 if __name__ == "__main__":
