@@ -40,3 +40,7 @@ class Test(TestCase):
         got = calculate.build_random_office(1)
         self.assertEqual((10,10), got.desks.shape);
 
+    def test_build_random_office__builds_empty_office_if_p_is_0(self):
+        got = calculate.build_random_office(0)
+        self.assertEqual(0, got.desks.sum())
+
