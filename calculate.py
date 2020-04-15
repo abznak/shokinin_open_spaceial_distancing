@@ -1,6 +1,11 @@
-    # Return the proportion of offices that had a path
+import numpy as np
+
+
+# Return the proportion of offices that had a path
+#
+# why is it called percentage when it's a fraction?  Because that's the language the problem used.
 def percentage_of_offices_with_a_path(office_generator, office_has_path_fn):
-    return 1
+    return np.mean([1 if office_has_path_fn(office) else 0 for office in office_generator])
 
 
 
