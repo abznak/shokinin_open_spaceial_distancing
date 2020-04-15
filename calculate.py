@@ -49,10 +49,18 @@ def office_has_path(office):
 def percentage_of_offices_with_a_path(office_generator, office_has_path_fn):
     return np.mean([1 if office_has_path_fn(office) else 0 for office in office_generator])
 
-def get_formatted_output(my_office_generator_factory, my_percentage_of_offices_with_a_path):
 
-
+def get_results(my_office_generator_factory, my_percentage_of_offices_with_a_path):
     empty_ps =  np.linspace(1, 0, 11)
-    lines = [f'{empty_p:.2f}: {my_percentage_of_offices_with_a_path(empty_p):.5f}' for empty_p in empty_ps]
+    results = ((empty_p, my_percentage_of_offices_with_a_path(empty_p)) for empty_p in empty_ps)
+    return results
+
+def format_output(results):
+    lines = [f'{res[0]:.2f}: {res[1]:.5f}' for res in results]
 
     return f"Number of samples for each p: {SAMPLES}\n" + ("\n".join(lines)) + "\n"
+
+
+def get_formatted_output(my_office_generator_factory, my_percentage_of_offices_with_a_path):
+    results = get_results(my_office_generator_factory, my_percentage_of_offices_with_a_path)
+    return format_output(results)
