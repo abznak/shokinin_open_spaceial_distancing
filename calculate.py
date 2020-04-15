@@ -14,7 +14,7 @@ Office = namedtuple('Office', 'start_col desks')
 
 # p is probably a desk is occupied
 def build_random_office(p):
-    assert False
+    return Office(1, np.ones([OFFICE_SIDE_LENGTH, OFFICE_SIDE_LENGTH]))
 
 
 
