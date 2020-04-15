@@ -21,8 +21,8 @@ def build_random_office(p):
     start_col = np.random.randint(0, OFFICE_SIDE_LENGTH)
     return Office(start_col, desks)
 
-def office_generator(n):
-    return (x for x in range(n))
+def office_generator(n, p, build_random_office_fn = build_random_office):
+    return (build_random_office_fn(p) for x in range(n))
 
 def office_has_path(office):
     desks = np.copy(office.desks)
