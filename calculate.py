@@ -4,7 +4,7 @@ from collections import namedtuple
 Office = namedtuple('Office', 'start_col desks')
 
 def office_has_path(office):
-    assert False
+    return False
 
 # Return the proportion of offices that had a path
 #
