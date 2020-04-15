@@ -2,7 +2,7 @@ import numpy as np
 from collections import namedtuple
 from skimage.morphology import flood_fill
 
-SAMPLES = 1000
+SAMPLES = 10000
 
 DESKROW_EXIT = 0
 
@@ -60,7 +60,7 @@ def get_results(my_percentage_of_offices_with_a_path = percentage_of_offices_wit
     return results
 
 def format_output(results):
-    lines = [f'{res[0]:.2f}: {res[1]:.5f}' for res in results]
+    lines = [f'{res[0]:.1f}: {res[1]:.3f}' for res in results]
 
     return f"Number of samples for each p: {SAMPLES}\n" + ("\n".join(lines)) + "\n"
 
@@ -72,8 +72,5 @@ def get_formatted_output(my_percentage_of_offices_with_a_path = percentage_of_of
 def main():
     print(get_formatted_output())
 
-
-
 if __name__ == "__main__":
-    # execute only if run as a script
     main()
