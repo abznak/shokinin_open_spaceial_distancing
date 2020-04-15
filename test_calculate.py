@@ -1,6 +1,10 @@
 from unittest import TestCase
 import numpy as np
+from unittest.mock import MagicMock
+
+
 import calculate
+
 
 
 class Test(TestCase):
@@ -75,6 +79,12 @@ class Test(TestCase):
 
         self.assertEqual('Office', type(office).__name__)
 
+    def test_office_generator__passes_p_to_build_random_office(self):
+        mock_build_random_office_fn = MagicMock()
+        office_generator = calculate.office_generator(5, .34, build_random_office_fn=mock_build_random_office_fn)
 
+        office = next(office_generator)
+
+        mock_build_random_office_fn.assert_called_once_with(.34)
 
 
