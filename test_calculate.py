@@ -28,4 +28,12 @@ class Test(TestCase):
 
         self.assertEqual(False, got)
 
+    def test_office_has_path__should_not_find_a_path_in_a_full_office(self):
+        full_desks = np.ones([2, 2])
+        office = calculate.Office(0, full_desks)
+
+        got = calculate.office_has_path(office)
+
+        self.assertEqual(True, got)
+
 
