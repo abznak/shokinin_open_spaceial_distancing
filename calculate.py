@@ -18,7 +18,7 @@ def build_random_office(p):
     desks_rolls = np.random.rand(*OFFICE_DIMENSIONS)
     convert_rolls_to_desk_state = np.vectorize(lambda roll: DESK_FULL if roll <= p else DESK_EMPTY)
     desks = convert_rolls_to_desk_state(desks_rolls)
-    return Office(1, desks)
+    return Office(0, desks)
 
 
 
