@@ -110,3 +110,8 @@ class Test(TestCase):
         results = list(calculate.get_results())
 
         self.assertEqual((1,0), results[0])
+
+    def test_get_results__last_row_is_correct(self):
+        results = list(calculate.get_results())
+
+        self.assertEqual((0,1), results[10])
