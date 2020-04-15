@@ -44,7 +44,9 @@ class Test(TestCase):
         got = calculate.build_random_office(0)
         self.assertEqual(0, got.desks.sum())
 
-
+    def test_build_random_office__builds_full_office_if_p_is_1(self):
+        got = calculate.build_random_office(1)
+        self.assertEqual(100, got.desks.sum())
 
 
 
