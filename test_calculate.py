@@ -2,14 +2,13 @@ from unittest import TestCase
 import numpy as np
 from unittest.mock import MagicMock
 
-
 import calculate
-
 
 
 class Test(TestCase):
     def test_percentage_of_offices_with_a_path__when_there_are_always_paths_should_return_1(self):
         office_generator = range(2)
+
         def office_has_path_fn(x): return True
 
         got = calculate.percentage_of_offices_with_a_path(office_generator, office_has_path_fn)
@@ -18,6 +17,7 @@ class Test(TestCase):
 
     def test_percentage_of_offices_with_a_path__when_there_are_no_paths_should_return_0(self):
         office_generator = range(2)
+
         def office_has_path_fn(x): return False
 
         got = calculate.percentage_of_offices_with_a_path(office_generator, office_has_path_fn)
@@ -42,7 +42,7 @@ class Test(TestCase):
 
     def test_buid_random_office__has_correct_size(self):
         got = calculate.build_random_office(1)
-        self.assertEqual((10,10), got.desks.shape);
+        self.assertEqual((10, 10), got.desks.shape);
 
     def test_build_random_office__builds_empty_office_if_p_is_0(self):
         got = calculate.build_random_office(0)
@@ -65,7 +65,6 @@ class Test(TestCase):
         starts = [calculate.build_random_office(0).start_col for i in range(1000)]
 
         self.assertEqual(9, max(starts))
-
 
     def test_office_generator__makes_n_items(self):
         offices = calculate.office_generator(13, 0);
@@ -109,9 +108,9 @@ class Test(TestCase):
     def test_get_results__first_row_is_correct(self):
         results = list(calculate.get_results())
 
-        self.assertEqual((1,0), results[0])
+        self.assertEqual((1, 0), results[0])
 
     def test_get_results__last_row_is_correct(self):
         results = list(calculate.get_results())
 
-        self.assertEqual((0,1), results[10])
+        self.assertEqual((0, 1), results[10])
